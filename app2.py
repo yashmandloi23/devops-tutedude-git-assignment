@@ -13,7 +13,7 @@ collection = db["students"]
 # Form page
 @app.route("/")
 def form():
-    return render_template("form.html")
+    return render_template("temmplate/todo.html")
 
 
 # Handle form submission
