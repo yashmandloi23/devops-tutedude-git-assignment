@@ -1,12 +1,5 @@
 [
-    {"id": 1, "name": "Alice", "grade": "A"},
-    {"id": 2, "name": "Bob", "grade": "B"},
-    {"id": 3, "name": "Charlie", "grade": "C"},
-    {"id": 4, "name": "Diana", "grade": "A"},
-    {"id": 5, "name": "Ethan", "grade": "B"},
-    {"id": 6, "name": "Fiona", "grade": "C"},
-    {"id": 7, "name": "George", "grade": "A"},
-    {"id": 8, "name": "Hannah", "grade": "B"},
-    {"id": 9, "name": "Ian", "grade": "C"},
-    {"id": 10, "name": "Jane", "grade": "A"}
+  {"id": 1, "name": "Alice"},
+  {"id": 2, "name": "Yash"},
+  {"id": 3, "name": "John"}
 ]
