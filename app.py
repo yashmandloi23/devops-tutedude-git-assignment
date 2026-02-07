@@ -1,45 +1,24 @@
-from flask import Flask
-import json
-import os
+from flask import request, redirect
+from pymongo import MongoClient
 
-app = Flask(__name__)
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-@app.route("/")
-def home():
-    return "Flask API is running. Visit /api"
-
-@app.route("/api")
-def get_data():
-    file_path = os.path.join(BASE_DIR, "data.json")
-
-    with open(file_path, "r") as file:
-        students = json.load(file)
-
-    html = """
-    <h2>Student Grades</h2>
-    <table border="1" cellpadding="8">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Grade</th>
-        </tr>
-    """
-
-    for s in students:
-        html += f"""
-        <tr>
-            <td>{s['id']}</td>
-            <td>{s['name']}</td>
-            <td>{s['grade']}</td>
-        </tr>
-        """
-
-    html += "</table>"
-
-    return html
+client = MongoClient("<your_mongodb_url>")
+db = client["todo_db"]
+collection = db["items"]
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route("/submittodoitem", methods=["POST"])
+def submit_todo():
+
+    try:
+        name = request.form["itemName"]
+        description = request.form["itemDescription"]
+
+        collection.insert_one({
+            "itemName": name,
+            "itemDescription": description
+        })
+
+        return "Item stored successfully"
+
+    except Exception as e:
+        return str(e)
